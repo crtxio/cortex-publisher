@@ -1,0 +1,28 @@
+name: Helper
+on:
+  workflow_call: null
+jobs:
+ ## Setup the wrangler.toml file with environment variables
+  wrangler_enviroment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set wrangler.toml environment variables
+        # Set Secrets as Environment Variables in wrangler.toml
+        env: 
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CLOUDFLARE_ROUTE_PATTERN: ${{ secrets.CLOUDFLARE_ROUTE_PATTERN }}
+          RESOLVER_KV_ID: ${{ secrets.RESOLVER_KV_ID }}
+          RESOLVER_KV_PREVIEW_ID: ${{ secrets.RESOLVER_KV_PREVIEW_ID }}
+          ZONES_KV_ID: ${{ secrets.ZONES_KV_ID }}
+          ZONES_KV_PREVIEW_ID: ${{ secrets.ZONES_KV_PREVIEW_ID }}
+        run: |
+          sed -i "s/__CLOUDFLARE_ACCOUNT_ID__/${CLOUDFLARE_ACCOUNT_ID}/" ./graph/wrangler.toml
+          sed -i "s/__CLOUDFLARE_ZONE_ID__/${CLOUDFLARE_ZONE_ID}/" ./graph/wrangler.toml
+          sed -i "s/__CLOUDFLARE_ROUTE_PATTERN__/${CLOUDFLARE_ROUTE_PATTERN}/" ./graph/wrangler.toml
+          sed -i "s/__RESOLVER_KV_ID__/${RESOLVER_KV_ID}/" ./graph/wrangler.toml
+          sed -i "s/__RESOLVER_KV_PREVIEW_ID__/${RESOLVER_KV_PREVIEW_ID}/" ./graph/wrangler.toml
+          sed -i "s/__ZONES_KV_ID__/${ZONES_KV_ID}/" ./graph/wrangler.toml
+          sed -i "s/__ZONES_KV_PREVIEW_ID__/${ZONES_KV_PREVIEW_ID}/" ./graph/wrangler.toml
+

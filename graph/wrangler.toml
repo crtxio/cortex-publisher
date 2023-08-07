@@ -1,0 +1,42 @@
+name = "graph"
+main = "src/index.ts"
+compatibility_date = "2022-11-13"
+
+account_id = "__CLOUDFLARE_ACCOUNT_ID__"
+workers_dev = true
+
+[vars]
+SCOPE = "cortex"
+
+[triggers]
+crons = ["* * * * *"]
+
+[[routes]]
+pattern = "__CLOUDFLARE_ROUTE_PATTERN__"
+zone_id = "__CLOUDFLARE_ZONE_ID__"
+
+[[kv_namespaces]]
+binding = "RESOLVER"
+id = "__RESOLVER_KV_ID__"
+preview_id = "__RESOLVER_KV_PREVIEW_ID__"
+
+[[kv_namespaces]]
+binding = "ZONES"
+id = "__ZONES_KV_ID__"
+preview_id = "__ZONES_KV_PREVIEW_ID__"
+
+[[durable_objects.bindings]]
+name = "ZONE"
+class_name = "Zone"
+
+[[durable_objects.bindings]]
+name = "DOMAIN"
+class_name = "Domain"
+
+[[durable_objects.bindings]]
+name = "NOTE"
+class_name = "Note"
+
+[[migrations]]
+tag = "v1" # Should be unique for each entry
+new_classes = ["Note", "Zone", "Domain"]

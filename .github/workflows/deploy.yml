@@ -1,0 +1,40 @@
+name: Deploy Worker
+on:
+  push:
+  pull_request:
+  repository_dispatch:
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml  
+  helper:
+    uses: ./.github/workflows/helper.yml
+# Deploy graph
+  deploy_graph:
+    needs: [lint, helper]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          cd graph
+          yarn install
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.7.0'  # Adjust the Node.js version as needed
+      - name: Install Wrangler
+        run: yarn add wrangler
+      - name: Cache Yarn cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('./graph/yarn.lock') }}  # Cache key includes the OS and the yarn.lock file
+      - name: Build & Deploy Graph
+        timeout-minutes: 60
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: ./graph

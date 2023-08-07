@@ -1,0 +1,19 @@
+name: Lint
+on:
+  workflow_call: null
+jobs:
+ ## Lint Graph
+  lint_graph:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          cache: yarn
+          cache-dependency-path: './graph/yarn.lock'
+      - run: |
+          cd graph
+          yarn install --frozen-lockfile
+          yarn run eslint
+          yarn run prettier "src/*.ts"
