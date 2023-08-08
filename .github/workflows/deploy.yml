@@ -1,0 +1,52 @@
+name: Deploy Worker
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+
+jobs:
+  lint:
+    if: github.event_name == 'push' || github.event_name == 'repository_dispatch' || github.event_name == 'pull_request'
+    uses: ./.github/workflows/lint.yml  
+# Deploy graph
+  deploy_graph:
+    needs: [lint]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          cd graph
+          yarn install
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.7.0'  # Adjust the Node.js version as needed
+      - name: Install Wrangler
+        run: yarn global add wrangler
+      - name: Cache Yarn cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('./graph/yarn.lock') }}  # Cache key includes the OS and the yarn.lock file
+      - name: Deploy to Cloudflare Account
+        env: 
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CLOUDFLARE_ROUTE_PATTERN: ${{ secrets.CLOUDFLARE_ROUTE_PATTERN }}
+          RESOLVER_KV_ID: ${{ secrets.RESOLVER_KV_ID }}
+          RESOLVER_KV_PREVIEW_ID: ${{ secrets.RESOLVER_KV_PREVIEW_ID }}
+          ZONES_KV_ID: ${{ secrets.ZONES_KV_ID }}
+          ZONES_KV_PREVIEW_ID: ${{ secrets.ZONES_KV_PREVIEW_ID }}
+        run: |
+          sed -i "s/__CLOUDFLARE_ACCOUNT_ID__/${CLOUDFLARE_ACCOUNT_ID}/" ./graph/wrangler.toml
+          sed -i "s/__CLOUDFLARE_ZONE_ID__/${CLOUDFLARE_ZONE_ID}/" ./graph/wrangler.toml
+          sed -i "s#__CLOUDFLARE_ROUTE_PATTERN__#${CLOUDFLARE_ROUTE_PATTERN}#" ./graph/wrangler.toml
+          sed -i "s/__RESOLVER_KV_ID__/${RESOLVER_KV_ID}/" ./graph/wrangler.toml
+          sed -i "s/__RESOLVER_KV_PREVIEW_ID__/${RESOLVER_KV_PREVIEW_ID}/" ./graph/wrangler.toml
+          sed -i "s/__ZONES_KV_ID__/${ZONES_KV_ID}/" ./graph/wrangler.toml
+          sed -i "s/__ZONES_KV_PREVIEW_ID__/${ZONES_KV_PREVIEW_ID}/" ./graph/wrangler.toml
+          CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} wrangler deploy --config ./graph/wrangler.toml
