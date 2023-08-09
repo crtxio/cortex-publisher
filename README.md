@@ -1,7 +1,7 @@
 # [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/crtxio/cortex-publisher)
 
 # Cortex-Publisher
-Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the official docs for more information on [Cloudflare Workers](https://developers.cloudflare.com/workers/).
+Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the official docs for more information on [Cloudflare Workers](https://developers.cloudflare.com/workers/). For more information on the Cortex system, what it does, and how to use it please visit the [Cortex FAQ](https://crtx.gitbook.io/faq/) or [Cortex Docs](https://docs.crtx.io/#/)
 
 ## Prerequisites
 
