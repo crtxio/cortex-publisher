@@ -6,16 +6,18 @@ Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the o
 
 ## Prerequisites
 
-1. Install [Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/).
+1. First you must have purchased and own a domain before setting up in Cloudflare. You can do this through Cloudflare directly, or use external services such as [Namecheap](https://www.namecheap.com/). Add the site to Cloudflare. This will populate the domain's zone ID for use in later steps. For more information on how to setup your domain in Cloudflare please visit [Add site to Cloudflare](https://developers.cloudflare.com/fundamentals/get-started/setup/add-site/).
 
-2. Create the following KV namespaces in your Cloudflare account.
+2. Install the [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/).
+
+3. Create the following KV namespaces in your Cloudflare account.
 
     - RESOLVER
     - RESOLVER-PREVIEW
     - ZONES
     - ZONES-PREVIEW
 
-   To create these, you must have installed Wrangler from Step 1 and then run the following commands in your console. Make sure to record the output ID's for each KV namespace as you create them for Step 3.
+   To create the KV namespaces, you must have installed Wrangler CLI and subsequently run the following commands in your console. Make sure to record the output ID's for each KV namespace as they are created for Step 3.
 
     ```console
         wrangler kv:namespaces create "RESOLVER"
@@ -31,7 +33,7 @@ Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the o
         wrangler kv:namespace list
     ```
 
-3. Configure github actions with the following secrets in your repository. Visit the official Github docs on how to use environment variables and secrets at [Encrypted Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
+4. Configure github actions with the following secrets in your repository. Visit the official Github docs on how to use [Encrypted Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
     - __*CLOUDFLARE_API_TOKEN*__: The API token associated to your cloudflare account. For more information on how create and use API tokens for use in CI/CD please visit [Create a Cloudflare API token](https://developers.cloudflare.com/workers/wrangler/ci-cd/#create-a-cloudflare-api-token).
     - __*CLOUDFLARE_ACCOUNT_ID*__: The ID of your Cloudflare account.
