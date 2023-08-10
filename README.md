@@ -6,7 +6,18 @@ Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the o
 
 ## Prerequisites
 
-1. First you must have purchased and own a domain before setting up in Cloudflare. You can do this through Cloudflare directly, or use external services such as [Namecheap](https://www.namecheap.com/). Add the domain as a site to Cloudflare. This will populate the domain's zone ID for use in later steps. For more information on how to setup your domain in Cloudflare please visit [Add site to Cloudflare](https://developers.cloudflare.com/fundamentals/get-started/setup/add-site/).
+1. First you must have purchased and own a domain before setting up in Cloudflare. You can do this through Cloudflare directly, or use external services such as [Namecheap](https://www.namecheap.com/). If you have a domain already you may proceed to adding the domain as a site to Cloudflare. This will populate the domain's Zone ID for use in later steps. For more information on how to setup your domain in Cloudflare please visit [Add site to Cloudflare](https://developers.cloudflare.com/fundamentals/get-started/setup/add-site/).
+
+2. Create a Cloudflare API Token. For more information on how create and use API tokens for use in CI/CD please visit [Create a Cloudflare API token](https://developers.cloudflare.com/workers/wrangler/ci-cd/#create-a-cloudflare-api-token).
+
+## Deployment
+
+1. [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/crtxio/cortex-publisher) <---- __*Click Here*__
+
+    - This will bring you to a cloudflare page. Fill in the information required, which will include your Cloudflare account ID and API Token that you created from the prerequisite step.
+    - You will also be linked to the newly forked repository to enable Github Workflows. For more information on workflows pleas visit Github's [About workflows](https://docs.github.com/en/actions/using-workflows/about-workflows).
+
+    __*Note*__: This will run a workflow that will fail by design as you do not currently have the remaining information populated to the newly forked repository for a clean deployment. Updates to come on this part of the deployment process in the future.
 
 2. Install the [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/).
 
@@ -33,9 +44,9 @@ Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the o
         wrangler kv:namespace list
     ```
 
-4. Configure github actions with the following secrets in your repository. Visit the official Github docs on how to use [Encrypted Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
+4. Configure github actions with the following secrets in your newly forked repository. Visit the official Github docs on how to use [Encrypted Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
-    - __*CLOUDFLARE_API_TOKEN*__: The API token associated to your cloudflare account. For more information on how create and use API tokens for use in CI/CD please visit [Create a Cloudflare API token](https://developers.cloudflare.com/workers/wrangler/ci-cd/#create-a-cloudflare-api-token).
+    - __*CLOUDFLARE_API_TOKEN*__: The API token associated to your cloudflare account.
     - __*CLOUDFLARE_ACCOUNT_ID*__: The ID of your Cloudflare account.
     - __*CLOUDFLARE_ZONE_ID*__: The Zone ID of the domain you wish to target.
     - __*CLOUDFLARE_ROUTE_PATTERN*__: The pattern of the route you wish to use for your worker. Example: hello.example.come/*
