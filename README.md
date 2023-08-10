@@ -20,10 +20,10 @@ Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the o
    To create the KV namespaces, you must have Wrangler CLI installed then run the following commands in your console. Make sure to record the output ID's for each KV namespace as they are needed for use in a later step.
 
     ```console
-        wrangler kv:namespaces create "RESOLVER"
-        wrangler kv:namespaces create "RESOLVER" --preview
-        wrangler kv:namespaces create "ZONE"
-        wrangler kv:namespaces create "ZONE" --preview
+        wrangler kv:namespace create "RESOLVER"
+        wrangler kv:namespace create "RESOLVER" --preview
+        wrangler kv:namespace create "ZONE"
+        wrangler kv:namespace create "ZONE" --preview
 
     ```
 
