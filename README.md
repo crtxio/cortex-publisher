@@ -6,7 +6,7 @@ Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the o
 
 ## Prerequisites
 
-1. First you must have purchased and own a domain before setting up in Cloudflare. You can do this through Cloudflare directly, or use external services such as [Namecheap](https://www.namecheap.com/). Add the site to Cloudflare. This will populate the domain's zone ID for use in later steps. For more information on how to setup your domain in Cloudflare please visit [Add site to Cloudflare](https://developers.cloudflare.com/fundamentals/get-started/setup/add-site/).
+1. First you must have purchased and own a domain before setting up in Cloudflare. You can do this through Cloudflare directly, or use external services such as [Namecheap](https://www.namecheap.com/). Add the domain as a site to Cloudflare. This will populate the domain's zone ID for use in later steps. For more information on how to setup your domain in Cloudflare please visit [Add site to Cloudflare](https://developers.cloudflare.com/fundamentals/get-started/setup/add-site/).
 
 2. Install the [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/).
 
@@ -17,7 +17,7 @@ Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the o
     - ZONES
     - ZONES-PREVIEW
 
-   To create the KV namespaces, you must have installed Wrangler CLI and subsequently run the following commands in your console. Make sure to record the output ID's for each KV namespace as they are created for Step 3.
+   To create the KV namespaces, you must have Wrangler CLI installed then run the following commands in your console. Make sure to record the output ID's for each KV namespace as they are needed for use in a later step.
 
     ```console
         wrangler kv:namespaces create "RESOLVER"
