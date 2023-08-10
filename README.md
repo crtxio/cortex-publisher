@@ -1,12 +1,10 @@
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/crtxio/cortex-publisher)
-
 # Cortex-Publisher
 
 Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the official docs for more information on [Cloudflare Workers](https://developers.cloudflare.com/workers/). For more information on the Cortex system, what it does, and how to use it please visit the [Cortex FAQ](https://crtx.gitbook.io/faq/) or [Cortex Docs](https://docs.crtx.io/#/)
 
 ## Prerequisites
 
-1. First you must have purchased and own a domain before setting up in Cloudflare. You can do this through Cloudflare directly, or use external services such as [Namecheap](https://www.namecheap.com/). If you have a domain already you may proceed to adding the domain as a site to Cloudflare. This will populate the domain's Zone ID for use in later steps. For more information on how to setup your domain in Cloudflare please visit [Add site to Cloudflare](https://developers.cloudflare.com/fundamentals/get-started/setup/add-site/).
+1. First you must have created a Cloudflare account, and purchased a domain for use with Cloudflare. You may do this through Cloudflare directly, or use external registrars such as [Namecheap](https://www.namecheap.com/). Once you have a Cloudflare account and domain you may proceed to adding the domain as a site to Cloudflare. This will populate the domain's Zone ID for use in later steps. For more information on how to setup your domain in Cloudflare please visit [Add site to Cloudflare](https://developers.cloudflare.com/fundamentals/get-started/setup/add-site/).
 
 2. Create a Cloudflare API Token. For more information on how create and use API tokens for use in CI/CD please visit [Create a Cloudflare API token](https://developers.cloudflare.com/workers/wrangler/ci-cd/#create-a-cloudflare-api-token).
 
@@ -46,11 +44,11 @@ Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the o
 
 4. Configure github actions with the following secrets in your newly forked repository. Visit the official Github docs on how to use [Encrypted Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
-    - __*CLOUDFLARE_API_TOKEN*__: The API token associated to your cloudflare account.
+    - __*CLOUDFLARE_API_TOKEN*__: The API token associated to your Cloudflare account.
     - __*CLOUDFLARE_ACCOUNT_ID*__: The ID of your Cloudflare account.
     - __*CLOUDFLARE_ZONE_ID*__: The Zone ID of the domain you wish to target.
     - __*CLOUDFLARE_ROUTE_PATTERN*__: The pattern of the route you wish to use for your worker. Example: hello.example.come/*
-    - __*RESOLVER_KV_ID*__: The ID of the RESOLVER KV you created in Step 1
-    - __*RESOLVER_KV_PREVIEW_ID*__: The ID of the RESOLVER_PREVIEW KV you created in Step 1.
-    - __*ZONES_KV_ID*__: The ID of the ZONES KV you create in Step 1.
-    - __*ZONES_KV_PREVIEW_ID*__: The ID of the ZONES-PREVIEW KV you created in Step 1.
+    - __*RESOLVER_KV_ID*__: The ID of the RESOLVER KV you created in the previous step
+    - __*RESOLVER_KV_PREVIEW_ID*__: The ID of the RESOLVER_PREVIEW KV you created in the previous step.
+    - __*ZONES_KV_ID*__: The ID of the ZONES KV you create in the previous step.
+    - __*ZONES_KV_PREVIEW_ID*__: The ID of the ZONES-PREVIEW KV you created in the previous.
