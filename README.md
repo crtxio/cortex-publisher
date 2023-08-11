@@ -1,10 +1,10 @@
 # Cortex-Publisher
 
-Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the official docs for more information on [Cloudflare Workers](https://developers.cloudflare.com/workers/). For more information on the Cortex system, what it does, and how to use it please visit the [Cortex FAQ](https://crtx.gitbook.io/faq/) or [Cortex Docs](https://docs.crtx.io/#/)
+Cortex Publisher is deployed to cloudflare using [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) and utilizes cloudflare workers. Visit the official docs for more information on [Cloudflare Workers](https://developers.cloudflare.com/workers/). For more information on the Cortex system, what it does, and how to use it please visit the [Cortex FAQ](https://crtx.gitbook.io/faq/) and [Cortex Docs](https://docs.crtx.io/#/)
 
 ## Prerequisites
 
-1. First you must have created a Cloudflare account, and purchased a domain for use with Cloudflare. You may do this through Cloudflare directly, or use external registrars such as [Namecheap](https://www.namecheap.com/). Once you have a Cloudflare account and domain you may proceed to adding the domain as a site to Cloudflare. This will populate the domain's Zone ID for use in later steps. For more information on how to setup your domain in Cloudflare please visit [Add site to Cloudflare](https://developers.cloudflare.com/fundamentals/get-started/setup/add-site/).
+1. First you must have created a Cloudflare account, and purchased a domain for use with Cloudflare. You may do this through Cloudflare directly, or use external registrars such as [Namecheap](https://www.namecheap.com/). If you have a Cloudflare account and domain you may proceed to adding the domain as a site to Cloudflare. This will populate the domain's Zone ID for use in later steps. For more information on how to setup your domain in Cloudflare please visit [Add site to Cloudflare](https://developers.cloudflare.com/fundamentals/get-started/setup/add-site/).
 
 2. Create a Cloudflare API Token. For more information on how create and use API tokens for use in CI/CD please visit [Create a Cloudflare API token](https://developers.cloudflare.com/workers/wrangler/ci-cd/#create-a-cloudflare-api-token).
 
@@ -12,10 +12,10 @@ Cortex Publisher is deployed to cloudflare using cloudflare workers. Visit the o
 
 1. [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/crtxio/cortex-publisher) <---- __*Click Here*__
 
-    - This will bring you to a cloudflare page. Fill in the information required, which will include your Cloudflare account ID and API Token that you created from the prerequisite step.
+    - This will bring you to a web page requiring your Cloudflare account ID and API Token that you created from the previous step.
     - You will also be linked to the newly forked repository to enable Github Workflows. For more information on workflows pleas visit Github's [About workflows](https://docs.github.com/en/actions/using-workflows/about-workflows).
 
-    __*Note*__: This will run a workflow that will fail by design as you do not currently have the remaining information populated to the newly forked repository for a clean deployment. Updates to come on this part of the deployment process in the future.
+    __*Note*__: This will run an initialworkflow that will fail by design as you do not currently have the remaining information populated for a clean deployment. Updates to come on this part of the deployment process in the future.
 
 2. Install the [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/).
 
