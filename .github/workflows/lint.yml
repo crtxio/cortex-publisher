@@ -11,9 +11,8 @@ jobs:
         with:
           node-version: lts/*
           cache: yarn
-          cache-dependency-path: './graph/yarn.lock'
+          cache-dependency-path: './yarn.lock'
       - run: |
-          cd graph
           yarn install --frozen-lockfile
           yarn run eslint
           yarn run prettier "src/*.ts"
