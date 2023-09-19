@@ -1,6 +1,6 @@
 # Cortex-Publisher
 
-Cortex Publisher is deployed to cloudflare using [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) leveraging Github Actions to deploy a cloudflare worker. Visit the official docs for more information on [Cloudflare Workers](https://developers.cloudflare.com/workers/). For more information on the Cortex, what it does, and how to use it please visit the [Cortex FAQ](https://crtx.gitbook.io/faq/) and [Cortex Docs](https://docs.crtx.io/#/)
+Cortex Publisher is a cloudflare worker deployed leveraging [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) inside a Github Actions pipeline. Visit the official docs for more information on [Cloudflare Workers](https://developers.cloudflare.com/workers/). For more information on the Cortex, what it does, and how to use it please visit the [Cortex FAQ](https://crtx.gitbook.io/faq/) and [Cortex Docs](https://docs.crtx.io/#/)
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Cortex Publisher is deployed to cloudflare using [Wrangler CLI](https://develope
     - This will bring you to a web page requiring your Cloudflare account ID and API Token that you created from the previous step.
     - You will also be linked to the newly forked repository to enable Github Workflows. For more information on workflows pleas visit Github's [About workflows](https://docs.github.com/en/actions/using-workflows/about-workflows).
 
-    __*Note*__: This will run an initialworkflow that will fail by design as you do not currently have the remaining information populated for a clean deployment. Updates to come on this part of the deployment process in the future.
+    __*Note*__: This will run an initial workflow that will fail by design as you do not currently have the required environment variables populated for a clean deployment. Updates to come on this part of the deployment process in the future.
 
 2. Create the following KV namespaces in your Cloudflare account.
 
